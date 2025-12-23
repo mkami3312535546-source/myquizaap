@@ -35,5 +35,5 @@ vsave.addEventListener('click', () =>{
 })
 
 vlogin.addEventListener('click', () =>{
-    window.location.href = 'savenewuser.html'
+    window.location.href = 'login.html'
 })

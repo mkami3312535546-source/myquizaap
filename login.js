@@ -21,7 +21,7 @@ login.addEventListener('click', () => {
     if (user) {
         // Login success
         localStorage.setItem("loggedInUser", username);
-        window.location.href = "index.html";
+        window.location.href = "savenewuser.html";
     } else {
         alert("Username or password incorrect");
     }

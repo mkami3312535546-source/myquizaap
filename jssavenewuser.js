@@ -3,6 +3,7 @@ const vpassword = document.getElementById('password')
 const vmobile = document.getElementById('mobile-number')
 const vemail = document.getElementById('email')
 const vsave = document.getElementById('save-user')
+const vlogin = document.getElementById('login')
 
 const users = JSON.parse(localStorage.getItem('users')) || []
 
@@ -31,4 +32,8 @@ vsave.addEventListener('click', () =>{
         vemail.value = ''
 
     
+})
+
+vlogin.addEventListener('click', () =>{
+    window.location.href = 'savenewuser.html'
 })

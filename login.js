@@ -1,5 +1,5 @@
-const inputUser = document.getElementById('usernameInput');
-const inputPass = document.getElementById('passwordInput');
+const inputUser = document.getElementById('user-name');
+const inputPass = document.getElementById('password');
 const savebtn = document.getElementById('savebtn');
 const login = document.getElementById('login');
 

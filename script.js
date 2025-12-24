@@ -7,7 +7,7 @@ const vprobar = document.getElementById('pro-bar')
 const vnext = document.getElementById('next')
 const vprevious = document.getElementById('previous')
 const result = document.getElementById('result')
-// const vsubmit = document.getElementById('submit')
+const vsubmit = document.getElementById('submit')
 
 
 const allquestions = [
@@ -22,6 +22,9 @@ let vdata = JSON.parse(localStorage.getItem('data')) || []
 let currentindex = parseInt(localStorage.getItem('currentindex')) || 0
 let score = parseInt(localStorage.getItem('score')) || 0
 let vqueslength = allquestions.length;
+let startTime = parseInt(localStorage.getItem("startTime")) || Date.now()
+localStorage.setItem("startTime", startTime)
+
 
 function savadata() {
     localStorage.setItem('data', JSON.stringify(vdata))
@@ -50,7 +53,7 @@ function quiztimer() {
             clearInterval(timer)
             alert('time is up')
             clearInterval(timer)
-             Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+            Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
             // showquiz(currentindex)
         }
     }, 1000)
@@ -59,7 +62,7 @@ function quiztimer() {
 
 function showquiz(index) {
     quiztimer()
-    
+
     const vquestions = allquestions[index]
 
     vshowquiz.textContent = vquestions.question
@@ -73,7 +76,7 @@ function showquiz(index) {
         vlist.textContent = Option
         vanslist.appendChild(vlist)
 
-           if (vdata[index]) {
+        if (vdata[index]) {
             if (Option === vdata[index]) {
                 if (Option === vquestions.correct) {
                     vlist.style.backgroundColor = 'green';
@@ -84,17 +87,20 @@ function showquiz(index) {
             vlist.style.pointerEvents = 'none';
         }
         vlist.addEventListener('click', () => {
-            if (vdata[index] = Option) {
-                if (Option === vquestions.correct) {
-                    vlist.style.backgroundColor = 'green'
-                    score++
-                    vscore.textContent = `Score: ${score}`
-                }
-                else {
-                    vlist.style.backgroundColor = 'red'
-                }
-                Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+            if (vdata[index]) return   // already answered
+
+            vdata[index] = Option
+
+            if (Option === vquestions.correct) {
+                vlist.style.backgroundColor = 'green'
+                score++
+                vscore.textContent = `Score: ${score}`
+            } else {
+                vlist.style.backgroundColor = 'red'
             }
+
+            Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+
             savadata()
             updataprobar()
         })
@@ -115,56 +121,32 @@ vnext.addEventListener('click', () => {
     }
 })
 
-vprevious.addEventListener('click', () =>{
-    if(currentindex > 0){
+vprevious.addEventListener('click', () => {
+    if (currentindex > 0) {
         currentindex--
         showquiz(currentindex)
-         Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+        Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
     }
 })
-// vsubmit.addEventListener('click', () => {
-
-//     const endTime = Date.now()
-//     const timeTaken = Math.floor((endTime - startTime) / 1000)
-
-//     const resultData = allquestions.map((q, index) => {
-//         return {
-//             question: q.question,
-//             correct: q.correct,
-//             userAnswer: vdata[index] || "Not Answered"
-//         }
-//     })
-
-//     localStorage.setItem("resultData", JSON.stringify(resultData))
-//     localStorage.setItem("score", score)
-//     localStorage.setItem("total", allquestions.length)
-//     localStorage.setItem("timeTaken", timeTaken)
-
-//     window.location.href = "result.html"
-// })
-
-
-showquiz(currentindex)
-
-const vsubmit = document.getElementById('submit')
-
 vsubmit.addEventListener('click', () => {
 
-    const resultData = allquestions.map((q, index) => {
-        return {
-            question: q.question,
-            correctAnswer: q.correct,
-            userAnswer: vdata[index] || "Not Answered",
-            isCorrect: vdata[index] === q.correct
-        }
-    })
+    const endTime = Date.now()
+    const timeTaken = Math.floor((endTime - startTime) / 1000)
+
+    const resultData = allquestions.map((q, index) => ({
+        question: q.question,
+        correct: q.correct,
+        userAnswer: vdata[index] || "Not Answered"
+    }))
 
     localStorage.setItem("resultData", JSON.stringify(resultData))
     localStorage.setItem("score", score)
     localStorage.setItem("total", allquestions.length)
+    localStorage.setItem("timeTaken", timeTaken)
 
-})
-
-result.addEventListener('click', () => {
     window.location.href = "result.html"
 })
+
+
+showquiz(currentindex)
+

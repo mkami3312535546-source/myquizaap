@@ -62,20 +62,21 @@
             document.querySelector(".container").appendChild(div)
         })
 
-        function goHome() {
+    function goHome() {
     // Remove result page data
     localStorage.removeItem("total");
     localStorage.removeItem("timeTaken");
     localStorage.removeItem("resultData");
 
     // Reset quiz progress
-    localStorage.removeItem("data");         // answers
-    localStorage.removeItem("currentindex"); // question index
-    localStorage.removeItem("score");        // score
-    localStorage.removeItem("startTime");    // timer start
+    localStorage.removeItem("data");
+    localStorage.removeItem("currentindex");
+    localStorage.removeItem("score");
+    localStorage.removeItem("startTime");
 
-    window.location.href = "index.html";
+    window.location.href = "savenewuser.html";
 }
+
 
     </script>
 

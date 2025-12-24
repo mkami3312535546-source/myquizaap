@@ -153,3 +153,18 @@ result.addEventListener('click', () => {
 
 showquiz(currentindex)
 
+const navUser = document.getElementById("nav-username")
+const loggedUser = localStorage.getItem("loggedInUser")
+
+if (!loggedUser) {
+    window.location.href = "login.html"
+} else {
+    navUser.textContent = loggedUser
+}
+
+function logout() {
+    localStorage.removeItem("loggedInUser")
+    window.location.href = "login.html"
+}
+
+

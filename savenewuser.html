@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
+    <nav class="navbar">
+        <div class="logo">QuizApp</div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="result.html">Result</a></li>
+        </ul>
+
+        <div class="nav-user">
+            <span id="nav-username"></span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+
+
     <div class="container">
         <h1>Simple Quiz App</h1>
-        
-        
-            <div id="pro-bar"></div>
-        
+
+
+        <div id="pro-bar"></div>
+
 
         <p id="score"></p>
 
         <p id="total-quiz"></p>
-        
+
         <p id="time-display"></p>
         <!-- <label for="total-quiz">Total Quiz </label><input type="text" id="total-quiz"> -->
 
@@ -32,15 +51,16 @@
             <button id="result" type="button">Result</button>
 
         </div>
-        
 
-        
+
+
     </div>
 
 
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>
 
 <!-- <!DOCTYPE html>

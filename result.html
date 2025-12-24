@@ -63,11 +63,20 @@
         })
 
         function goHome() {
-            localStorage.removeItem("total");
-            localStorage.removeItem("timeTaken");
-            localStorage.removeItem("resultData");
-            window.location.href = "index.html"
-        }
+    // Remove result page data
+    localStorage.removeItem("total");
+    localStorage.removeItem("timeTaken");
+    localStorage.removeItem("resultData");
+
+    // Reset quiz progress
+    localStorage.removeItem("data");         // answers
+    localStorage.removeItem("currentindex"); // question index
+    localStorage.removeItem("score");        // score
+    localStorage.removeItem("startTime");    // timer start
+
+    window.location.href = "index.html";
+}
+
     </script>
 
 

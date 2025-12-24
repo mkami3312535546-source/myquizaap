@@ -22,9 +22,6 @@ let vdata = JSON.parse(localStorage.getItem('data')) || []
 let currentindex = parseInt(localStorage.getItem('currentindex')) || 0
 let score = parseInt(localStorage.getItem('score')) || 0
 let vqueslength = allquestions.length;
-let startTime = parseInt(localStorage.getItem("startTime")) || Date.now()
-localStorage.setItem("startTime", startTime)
-
 
 function savadata() {
     localStorage.setItem('data', JSON.stringify(vdata))
@@ -53,7 +50,7 @@ function quiztimer() {
             clearInterval(timer)
             alert('time is up')
             clearInterval(timer)
-            Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+             Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
             // showquiz(currentindex)
         }
     }, 1000)
@@ -62,7 +59,7 @@ function quiztimer() {
 
 function showquiz(index) {
     quiztimer()
-
+    
     const vquestions = allquestions[index]
 
     vshowquiz.textContent = vquestions.question
@@ -76,7 +73,7 @@ function showquiz(index) {
         vlist.textContent = Option
         vanslist.appendChild(vlist)
 
-        if (vdata[index]) {
+           if (vdata[index]) {
             if (Option === vdata[index]) {
                 if (Option === vquestions.correct) {
                     vlist.style.backgroundColor = 'green';
@@ -87,20 +84,17 @@ function showquiz(index) {
             vlist.style.pointerEvents = 'none';
         }
         vlist.addEventListener('click', () => {
-            if (vdata[index]) return   // already answered
-
-            vdata[index] = Option
-
-            if (Option === vquestions.correct) {
-                vlist.style.backgroundColor = 'green'
-                score++
-                vscore.textContent = `Score: ${score}`
-            } else {
-                vlist.style.backgroundColor = 'red'
+            if (vdata[index] = Option) {
+                if (Option === vquestions.correct) {
+                    vlist.style.backgroundColor = 'green'
+                    score++
+                    vscore.textContent = `Score: ${score}`
+                }
+                else {
+                    vlist.style.backgroundColor = 'red'
+                }
+                Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
             }
-
-            Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
-
             savadata()
             updataprobar()
         })
@@ -121,11 +115,11 @@ vnext.addEventListener('click', () => {
     }
 })
 
-vprevious.addEventListener('click', () => {
-    if (currentindex > 0) {
+vprevious.addEventListener('click', () =>{
+    if(currentindex > 0){
         currentindex--
         showquiz(currentindex)
-        Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+         Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
     }
 })
 vsubmit.addEventListener('click', () => {
@@ -133,76 +127,21 @@ vsubmit.addEventListener('click', () => {
     const endTime = Date.now()
     const timeTaken = Math.floor((endTime - startTime) / 1000)
 
-    const resultData = allquestions.map((q, index) => ({
-        question: q.question,
-        correct: q.correct,
-        userAnswer: vdata[index] || "Not Answered"
-    }))
+    const resultData = allquestions.map((q, index) => {
+        return {
+            question: q.question,
+            correct: q.correct,
+            userAnswer: vdata[index] || "Not Answered"
+        }
+    })
 
     localStorage.setItem("resultData", JSON.stringify(resultData))
     localStorage.setItem("score", score)
     localStorage.setItem("total", allquestions.length)
     localStorage.setItem("timeTaken", timeTaken)
 
-    // window.location.href = "result.html"
-})
-
-result.addEventListener('click', () => {
     window.location.href = "result.html"
 })
 
 showquiz(currentindex)
-
-// Login protection
-const loggedUser = localStorage.getItem("loggedInUser");
-const navUser = document.getElementById("nav-username");
-
-if (!loggedUser) {
-    window.location.href = "login.html";
-} else if (navUser) {
-    navUser.textContent = loggedUser;
-}
-
-// Logout
-function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
-}
-
-// Mobile menu toggle
-const toggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (toggle) {
-    toggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-    });
-}
-
-// Active link highlight
-const links = document.querySelectorAll(".nav-links a");
-links.forEach(link => {
-    if (link.href === window.location.href) {
-        link.classList.add("active");
-    }
-});
-
-const darkModeToggle = document.getElementById("darkModeToggle");
-
-// Load previous dark mode preference
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-}
-
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-
-    // Save preference
-    if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        localStorage.setItem("darkMode", "disabled");
-    }
-});
-
 

@@ -144,9 +144,12 @@ vsubmit.addEventListener('click', () => {
     localStorage.setItem("total", allquestions.length)
     localStorage.setItem("timeTaken", timeTaken)
 
-    window.location.href = "result.html"
+    // window.location.href = "result.html"
 })
 
+result.addEventListener('click', () => {
+    window.location.href = "result.html"
+})
 
 showquiz(currentindex)
 

@@ -21,7 +21,7 @@ login.addEventListener('click', () => {
     if (user) {
         // Login success
         localStorage.setItem("loggedInUser", username);
-        window.location.href = "savenewuser.html";
+        window.location.href = "quizaap.html";
     } else {
         alert("Username or password incorrect");
     }

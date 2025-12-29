@@ -9,13 +9,16 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.15);
+    position: sticky;
+    margin-top: 20px;
+     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), #8d7e9b);
     backdrop-filter: blur(10px);
     /* border-radius: 15px; */
     border: 1px solid #ffffff33;
     color: white;
-    width: 99%;
+    width: 100%;
     justify-items: center;
+    border-radius: 50px;
 }
 
 button {
@@ -50,12 +53,14 @@ button:active {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #4facfe;
-    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), #8d7e9b);
+    /* background: rgba(125, 109, 141, 0.4); */
+    padding: 8px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
+    border-radius: 40px;
 }
 
 /* Logo */
@@ -92,7 +97,7 @@ button:active {
 }
 
 .nav-user button {
-    background: #ff4d4d;
+    background: rgba(255,255,255,0.40);
     border: none;
     padding: 6px 10px;
     border-radius: 5px;
@@ -109,6 +114,33 @@ button:active {
     display: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+.card-container{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), #8d7e9b);
+    margin-top: 0%;
+    justify-items: center;
+}
+.main-card{
+    display: flex;
+    width: 100%;
+}
+.cards{
+    width: 50%;
+    height: 100px;
+    background: linear-gradient(135deg, hwb(0 100% 0% / 0.349), #8d7e9b);
+    margin: 5px;
+    text-align: center;
+    align-content: center;
+
+}
+.cards:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(101, 90, 112, 0.6);
+    background-color: #4c8ba7;
+    font-size: larger;
 }
 
 /* Mobile */

@@ -8,6 +8,7 @@ const vnext = document.getElementById('next')
 const vprevious = document.getElementById('previous')
 const result = document.getElementById('result')
 const vsubmit = document.getElementById('submit')
+const vrestart = document.getElementById('restart')
 
 
 const allquestions = [
@@ -100,6 +101,7 @@ function showquiz(index) {
             }
 
             Array.from(vanslist.children).forEach(item => item.style.pointerEvents = 'none')
+            setTimeout(()=>{if(currentIndex < allquestions.length-1){currentIndex++; showquiz(currentIndex);}},500);
 
             savadata()
             updataprobar()
@@ -149,6 +151,19 @@ vsubmit.addEventListener('click', () => {
 
 result.addEventListener('click', () => {
     window.location.href = "result.html"
+})
+
+vrestart.addEventListener('click', () => {
+    localStorage.removeItem('data')
+    localStorage.removeItem('currentindex')
+    localStorage.removeItem('score')
+    localStorage.removeItem('startTime')
+    currentindex = 0
+    score = 0
+    vdata = []
+    startTime = Date.now()
+    localStorage.setItem("startTime", startTime)
+    showquiz(currentindex)
 })
 
 showquiz(currentindex)

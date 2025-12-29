@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="card-container">
+        <h1>Select Your Quiz Section</h1>
+        <div class="main-card">
+            <div class="cards" id="card1">Islamic Section</div>
+            <div class="cards" id="card2">Urdu Section</div>
+            <div class="cards" id="card3">English Section</div>
+            <div class="cards" id="card4">Seceine Section</div>
+        </div>
+    </div>
+</body>
+
+<script>
+function go(section) {
+    localStorage.setItem("selectedSection", section);
+    window.location.href = "./quizaap.html";
+}
+
+card1.onclick = () => go("islamic");
+card2.onclick = () => go("urdu");
+card3.onclick = () => go("english");
+card4.onclick = () => go("science");
+</script>
+
+
+<!-- <script>
+document.getElementById("card1").addEventListener("click", () => {
+    localStorage.setItem("selectedSection", "islamic");
+    window.location.href = "./quizaap.html";
+
+});
+
+document.getElementById("card2").addEventListener("click", () => {
+    localStorage.setItem("selectedSection", "urdu");
+    window.location.href = "./quizaap.html";
+
+});
+
+document.getElementById("card3").addEventListener("click", () => {
+    localStorage.setItem("selectedSection", "english");
+    window.location.href = "./quizaap.html";
+
+});
+
+document.getElementById("card4").addEventListener("click", () => {
+    localStorage.setItem("selectedSection", "science");
+    window.location.href = "./quizaap.html";
+
+});
+</script> -->
+
+
+</html>

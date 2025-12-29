@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Quiz</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add New Quiz Question</h2>
+
+    <input type="radio" name="section" value="islamic" checked> Islamic
+    <input type="radio" name="section" value="urdu"> Urdu
+    <input type="radio" name="section" value="english"> English
+    <input type="radio" name="section" value="science"> Science <br><br>;
+
+
+    <label>Question</label>
+    <input type="text" id="question">
+
+    <label>Answer</label>
+    <input type="text" id="answer">
+
+    <h3>Options (select correct one)</h3>
+
+    <div>
+        <input type="radio" name="correct" value="0">
+        <input type="text" id="opt0" placeholder="Option 1">
+    </div>
+
+    <div>
+        <input type="radio" name="correct" value="1">
+        <input type="text" id="opt1" placeholder="Option 2">
+    </div>
+
+    <div>
+        <input type="radio" name="correct" value="2">
+        <input type="text" id="opt2" placeholder="Option 3">
+    </div>
+
+    <!-- <div>
+        <input type="radio" name="correct" value="3">
+        <input type="text" id="opt3" placeholder="Option 4">
+    </div> -->
+
+    <button id="add-quiz" type="button">Add Quiz</button>
+
+    <p id="msg"></p>
+</div>
+
+<script src="quiz-data.js"></script>
+</body>
+</html>
